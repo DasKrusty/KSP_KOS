@@ -1,0 +1,16 @@
+print "Launching".
+lock steering to heading(90,80).
+lock throttle to 1.
+stage.
+wait until altitude > 5000.
+lock steering to heading(90,60).
+wait until altitude > 15000.
+lock steering to heading(90,45).
+wait until altitude > 25000.
+lock steering to heading(90,30).
+until apoapsis > 80000 {
+  print "apoapsis is " + round(apoapsis,0).
+  wait 0.
+}
+lock throttle to 0.
+// ..etc...
