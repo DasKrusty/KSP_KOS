@@ -12,9 +12,7 @@ local g is gui(window_open).
 
 //TITLE HEADER
 set TITLEHEADER to g:addhbox().
-    local TITLE is TITLEHEADER:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>"). 
-    local VER is TITLEHEADER:addlabel("<i>" + "0.10.00" + "</i>").
-    set VER:style:align to "right".
+    local TITLE is TITLEHEADER:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "0.10.01" + "</i>"). 
 //HEADER BOX
 set HEADERBOX to g:addhbox().
     local SHIPNAME is HEADERBOX:addlabel("NAME:   " + "<b>" + ship:Name + "</b>").
