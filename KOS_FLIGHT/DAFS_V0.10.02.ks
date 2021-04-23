@@ -10,31 +10,30 @@ local window_open is (500).//px
 
 local g is gui(window_open).
 
-set TITLE:style:align to "left".
+
 
 //TITLE 
 local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "0.10.02" + "</i>"). 
-    
 //HEADER BOX
-set HEADERBOX to g:addhbox().
-    local  HEADERBOX:addlabel("NAME:   " + "<b>" + ship:Name + "</b>").
-    local HIDEBUTTON to HEADERBOX:addbutton ("_").
-        set HIDEBUTTON:style:width to 50.
-        set HIDEBUTTON:style:textcolor to black.
-    local CLOSEBUTTON to HEADERBOX:addbutton ("X").
-        set CLOSEBUTTON:style:width to 50.
-        set CLOSEBUTTON:style:textcolor to black.
+set BOX1 to g:addhbox().
+    BOX1:addlabel("NAME:   " + "<b>" + ship:Name + "</b>").
+    local HIDE_B to BOX1:addbutton ("_").
+        set HIDE_B:style:width to 50.
+        set HIDE_B:style:textcolor to black.
+    local CLOSE_B to BOX1:addbutton ("X").
+        set CLOSE_B:style:width to 50.
+        set CLOSE_B:style:textcolor to black.
 //STATUS BOX
-set STATUSBOX to g:addhbox().
-    set STATUSTITLEBOX to STATUSBOX:addhbox.
-        local STATUSTITLE to STATUSTITLEBOX:addlabel("CURRENT STATUS").
-    set STATUSPRINT to STATUSBOX:addhbox.
-        local STATUSREAD to STATUSBOX:addlabel("Waiting").
+set BOX2 to g:addhbox().
+    set BOX2SUB1 to BOX2:addhbox.
+        BOX2SUB1:addlabel("CURRENT STATUS").
+    set BOX2SUB2 to BOX2:addhbox.
+        BOX2SUB2:addlabel("Waiting").
 //LEVEL2 SECTION
-set MAINSECTION to g:addhbox().
-    local MAINSECTIONTITLE is MAINSECTION:addlabel("Main Section Title Holder").
+set BOX3 to g:addhbox().
+    local BOX3_TITLE is BOX3:addlabel("Main Section Title Holder"). //REMOVE
     //LEFT SECTION BOX
-    set RUNMODE to MAINSECTION:addvbox().
+    set RUNMODE to BOX3:addvbox().
         RUNMODE:addlabel("RUNMODE: ").
         set RUNMODE:style:width to 120.
         set RUNMODE:style:align to "left".
@@ -44,10 +43,10 @@ set MAINSECTION to g:addhbox().
             set LAN to RUNMODE:addbutton ("Land").
             set TES to RUNMODE:addbutton ("Test").
     //MIDDLE SECTION BOX
-    set INFOBOX to MAINSECTION:addvbox().
+    set INFOBOX to BOX3:addvbox().
         INFOBOX:addlabel("INFORMATION:").
     //RIGHT SECTION BOX
-    set SETTINGBOX to MAINSECTION:addvbox().
+    set SETTINGBOX to BOX3:addvbox().
         SETTINGBOX:addlabel("SETTINGS:").
         set SETTINGBOX:style:width to 140.
             //local AUT is SETTINGBOX:addhslider("Auto Throttle",false).
