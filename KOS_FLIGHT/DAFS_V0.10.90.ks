@@ -31,7 +31,7 @@ set BOX1 to g:addhbox().
                 parameter b. 
                 if b {
                     set g:style:height to WIN_MIN.
-                    set g:style:font to ("red").
+                    set g:style:font to ("red"). //BUSY HERE
                 }
                 else {
                     set g:style:height to WIN_OPEN.
