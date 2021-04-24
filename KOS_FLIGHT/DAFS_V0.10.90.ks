@@ -1,20 +1,15 @@
-function Main{
-    doGUI().
-    wait until false.
-    
+//Script currently has the functionality to close.
 
-}
 
-function doGUI {
+    local EXITGUI is false.
 clearguis().
 clearscreen. print " running.".
 //wait 1.
 //core:part:getmodule("kOSProcessor"):doevent("Close Terminal").
-local exit is false.
 
 //WINDOW SIZING
 local WIN_OPEN is (500).
-local WIN_MIN is (100).
+local WIN_MIN is (75).
 
 local g is gui(WIN_OPEN).
 set g:x to 10. 
@@ -23,26 +18,26 @@ set g:style:padding:h to 5.
 set g:style:padding:v to 5.
 
 //TITLE 
-local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       0.10.90" + "</i>"). 
+local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       0.11.01" + "</i>"). 
 //HEADER BOX
 set BOX1 to g:addhbox().
     BOX1:addlabel("NAME:   " + "<b>" + ship:Name + "</b>").
-    // local HIDE_B to BOX1:addbutton ("_").
-    //     set HIDE_B:style:width to 50.
-    //     set HIDE_B:style:textcolor to black.
-    //         set HIDE_B:toggle to true.
-    //         set HIDE_B:style:textcolor to black.
-    //         set HIDE_B:ontoggle to { 
-    //             parameter b. 
-    //             if b {
-    //                 //box_all:hide().
-    //                 set g:style:height to WIN_MIN.
-    //             }
-    //             else {
-    //                 //box_all:show().
-    //                 set g:style:height to WIN_OPEN.
-    //             }
-    //         }.
+    local HIDE_B to BOX1:addbutton ("_").
+        set HIDE_B:style:width to 50.
+        set HIDE_B:style:textcolor to black.
+            set HIDE_B:toggle to true.
+            set HIDE_B:style:textcolor to black.
+            set HIDE_B:ontoggle to { 
+                parameter b. 
+                if b {
+                    set g:style:height to WIN_MIN.
+                    set g:style:font to ("red").
+                }
+                else {
+                    set g:style:height to WIN_OPEN.
+                    set g:style:font to ("green").
+                }
+            }.
     local CLOSE_B to BOX1:addbutton ("X").
         set CLOSE_B:style:width to 50.
         set CLOSE_B:style:textcolor to black.
@@ -93,18 +88,20 @@ set LEVEL3BOX to g:addvbox().
             set SCROLLBOX:style:height to 400.
 g:show().
 //GUI END DESIGN
-}
+
 
 //TRIGGERS
 // LOCAL isDone IS FALSE.
-// wait until isDone.
+wait until EXITGUI.
 
 //FUNCTIONS
 function doCLOSEGUI{
     BOX2SUB2:clear.
     BOX2SUB2:addlabel("Closing GUI").
     SCROLLBOX:addlabel("Closing GUI").
-    //clearGuis.
+    wait 3.
+    set EXITGUI to true.
+    print "closing".
+    g:hide().
 }
 
-main().
