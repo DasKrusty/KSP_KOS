@@ -1,6 +1,6 @@
 function Main{
     doGUI().
-    
+    wait until false.
     
 
 }
@@ -108,4 +108,3 @@ function doCLOSEGUI{
 }
 
 main().
-wait until false.
