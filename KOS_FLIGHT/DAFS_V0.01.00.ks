@@ -1,4 +1,7 @@
-
+//CURRENT ISSUES
+//None
+//COMPLETED
+//Minimising Button
 clearguis().
 clearscreen. print "GUI starting up".
 wait 1.
@@ -8,15 +11,16 @@ local EXITGUI is false.
 
 //WINDOW SIZING & STYLING
 local WIN_OPEN is (500).
-local WIN_MIN is (75).
+local WIN_MIN is (77).
 local g is gui(WIN_OPEN).
 set g:style:height to WIN_OPEN.
 
 //GUI LAYOUT
 //TITLE
-local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.00.64" + "</i>").
+local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.01.00" + "</i>").
 //HEADER BOX
 set HEADER_BOX to g:addhlayout.
+    
     set HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
         set HEADER_TITLE to HEADER_TITLE_BOX:addlabel ("<b>" + "NAME: " + "</b>").
     set HEADER_NAME_BOX to HEADER_BOX:addhlayout.
@@ -29,11 +33,17 @@ set HEADER_BOX to g:addhlayout.
                 parameter b. 
                 if b {
                     set g:style:height to WIN_MIN.
-                    set g:style:font to ("red"). //BUSY HERE
+                    STATUS_BOX:hide.
+                    MAIN_BOX:hide.
+                    REF_BOX:hide.
+                    SCROLL_BOX:hide.
                 }
                 else {
                     set g:style:height to WIN_OPEN.
-                    set g:style:font to ("green").
+                    STATUS_BOX:show.
+                    MAIN_BOX:show.
+                    REF_BOX:show.
+                    SCROLL_BOX:show.
                 }
             }.
     set CAN_BUT to HEADER_BOX:addbutton ("X").
@@ -43,10 +53,11 @@ set HEADER_BOX to g:addhlayout.
 //STATUS BAR
 set STATUS_BOX to g:addhlayout.
     set STATUS_BOX_LABEL to STATUS_BOX:addhlayout.
-        STATUS_BOX_LABEL:addlabel ("CURRENT STATUS: ").
+        STATUS_BOX_LABEL:addlabel ("<b>" + "CURRENT STATUS:" + "</b>").
             set STATUS_BOX_LABEL:style:width to 150. 
     set STATUS_BOX_STATUS to STATUS_BOX:addhbox.
         STATUS_BOX_STATUS:addlabel ("Waiting").
+        set STATUS_BOX_STATUS:style:textcolor to yellow.
 //MAIN CONTENT
 set MAIN_BOX to g:addhlayout.
     local RUNMODE to MAIN_BOX:addvlayout.
@@ -58,14 +69,13 @@ set MAIN_BOX to g:addhlayout.
         set INFO_BOX_CONTENT to INFO_BOX:addvbox.
         INFO_BOX_CONTENT:addlabel ("Text holder").
     local THIRD_CONTENT_BOX to MAIN_BOX:addvlayout.
-        SETTINGS_BOX:addlabel ("<b>" + "SETTINGS" + "</b>").
+        THIRD_CONTENT_BOX:addlabel ("<b>" + "SETTINGS" + "</b>").
         set SETTINGS_BOX to THIRD_CONTENT_BOX:addvbox.
-            
             SETTINGS_BOX:addlabel ("Text holder").
 //SCROLLING FEEDBACK
-g:addlabel ("STATUS READOUT").
-set SCROLL_BOX to g:addscrollbox.
-    //set SCROLL_BOX:style:height to 500.
+set REF_BOX to g:addvbox.
+    REF_BOX:addlabel ("<b>" + "STATUS READOUT" + "</b>").
+    set SCROLL_BOX to g:addscrollbox.
 
 g:show().
 //GUI END DESIGN
