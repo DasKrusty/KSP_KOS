@@ -1,7 +1,8 @@
+//PLANNED
+//GPS guidance via gps co-ordinates / or degrees height
 //CURRENT ISSUES
-//None
+//Take Off function requires locked heading - find a way to get current direction and feed into TOf
 //COMPLETED
-//Minimising Button
 
 clearguis().
 clearscreen. print "GUI starting up".
@@ -18,7 +19,7 @@ set g:style:height to WIN_OPEN.
 
 //GUI LAYOUT
 //TITLE
-local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.01.58" + "</i>").
+local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.02.36" + "</i>").
 //HEADER BOX
 set HEADER_BOX to g:addhlayout.
     
