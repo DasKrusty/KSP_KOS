@@ -11,7 +11,6 @@ wait 1.
 //core:part:getmodule("kOSProcessor"):doevent("Close Terminal").
 local EXITGUI is false.    
 
-
 //WINDOW SIZING & STYLING
 local WIN_OPEN is (500).
 local WIN_MIN is (77).
@@ -20,16 +19,15 @@ set g:style:height to WIN_OPEN.
 
 //GUI LAYOUT
 //TITLE
-local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.02.43" + "</i>").
+local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.02.63" + "</i>").
 //HEADER BOX
-set HEADER_BOX to g:addhlayout.
-    
-    set HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
-        set HEADER_TITLE to HEADER_TITLE_BOX:addlabel ("<b>" + "NAME: " + "</b>").
-    set HEADER_NAME_BOX to HEADER_BOX:addhlayout.
-        set HEADER_NAME to HEADER_NAME_BOX:addlabel ("<b>" + ship:name + "</b>").
+set HEADER_BOX to g:addhlayout. //Header horizontal box holder
+    set HEADER_TITLE_BOX to HEADER_BOX:addhlayout. //Header title box
+        set HEADER_TITLE to HEADER_TITLE_BOX:addlabel ("<b>" + "NAME: " + "</b>"). //Header title
+    set HEADER_NAME_BOX to HEADER_BOX:addhlayout. //Header name box
+        set HEADER_NAME to HEADER_NAME_BOX:addlabel ("<b>" + ship:name + "</b>"). //Header name
         set HEADER_NAME:style:textcolor to yellow.
-    set MIN_BUT to HEADER_BOX:addbutton ("_").
+    set MIN_BUT to HEADER_BOX:addbutton ("_"). //Minimise button
         set MIN_BUT:style:width to 50. 
         set MIN_BUT:toggle to true.
             set MIN_BUT:ontoggle to { 
@@ -49,7 +47,7 @@ set HEADER_BOX to g:addhlayout.
                     SCROLL_BOX:show.
                 }
             }.
-    set CAN_BUT to HEADER_BOX:addbutton ("X").
+    set CAN_BUT to HEADER_BOX:addbutton ("X"). //Close
         set CAN_BUT:style:width to 50.
         set CAN_BUT:style:textcolor to yellow. 
         set CAN_BUT:onclick to {doCLOSEGUI().}.
@@ -92,6 +90,16 @@ set MAIN_BOX to g:addhlayout.
                             SCROLL_BOX:addlabel ("Dynamic Throttle Control - Deactivated"). 
                         }
                     }.
+//AUTO NAVIGATION SECTION
+set NAV_BOX to g:addhlayout.
+    local LEF_SEC to NAV_BOX:addvlayout.
+    local MID_SEC to NAV_BOX:addvlayout.
+        //HEADING
+            //Setup - B1"<<" B2"<" T"" B3">" B4">>"
+            
+        //HEIGHT
+
+    local RIG_SEC to NAV_BOX:addvlayout.                    
 //SCROLLING FEEDBACK
 set REF_BOX to g:addvbox.
     REF_BOX:addlabel ("<b>" + "STATUS READOUT" + "</b>").
