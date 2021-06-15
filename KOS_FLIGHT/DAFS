@@ -1,0 +1,28 @@
+DASKRUSTY'S AUTOMATED FLIGHT SYSTEM
+
+OBJECTIVE:
+    - Automated Take Off    - BUSY
+    - Free FLIGHT           - COMPLETED
+    - Automated Guidance    - PLANNING
+    - Automated Landing     - PLANNING
+    - Auto Throttle         - COMPLETED
+    - Recurring Print       - PLANNING
+
+PLANNED:
+    - Automated Take Off
+        - Set flaps for quicker take off
+        - Set engine mode for quicker take off
+    - Automated Guidance
+        - Make drop down for Automated Guidance linked to BUTTON
+        - Height
+        - Speed
+        - Direction In Degrees
+            - <<    <   100 >   >>
+        - GPS
+            - 44.2564 / 181.5524
+        - Must be able to select from either GPS, DID, LAB
+BUSY:
+    - Automated Take Off
+        - Take Off function requires locked heading - find a way to get current direction and feed into TOf
+COMPLETED:
+    - Free flight function
