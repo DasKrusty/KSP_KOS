@@ -1,10 +1,3 @@
-//PLANNED
-//GPS guidance via gps co-ordinates / or degrees height
-//CURRENT ISSUES
-//Take Off function requires locked heading - find a way to get current direction and feed into TOf
-//COMPLETED
-// Free flight function
-
 clearguis().
 clearscreen. print "GUI starting up".
 wait 1.
@@ -146,8 +139,6 @@ function doCLOSEGUI{
 }
 
 function doTakeOff {
-    //set flaps for quicker take off
-    //set engine mode for quicker take off
     wait 0.5.
     STATUS_BOX_STATUS:clear.
     STATUS_BOX_STATUS:addlabel ("Proceeding to take off").
