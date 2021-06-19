@@ -7,11 +7,13 @@ OBJECTIVE:
     - Automated Landing     - PLANNING
     - Auto Throttle         - COMPLETED
     - Recurring Print       - PLANNING
+    - Test function         - PLANNING
 
 PLANNED:
     - Automated Take Off
         - Set flaps for quicker take off
         - Set engine mode for quicker take off
+        - Slider for control over Direction
     - Automated Guidance
         - Make drop down for Automated Guidance linked to BUTTON
         - Height
@@ -24,5 +26,9 @@ PLANNED:
 BUSY:
     - Automated Take Off
         - Take Off function requires locked heading - find a way to get current direction and feed into TOf
+            - set DIR
+    - Dynamic Throttle Control  
+        - Set a slider with ability to give more control on settings of DTC
 COMPLETED:
     - Free flight function
+    - Dynamic Throttle Control

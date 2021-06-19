@@ -83,6 +83,7 @@ set MAIN_BOX to g:addhlayout.
                             SCROLL_BOX:addlabel ("Dynamic Throttle Control - Deactivated"). 
                         }
                     }.
+            set DTC to SETTINGS_BOX:addhslider (4.75,30,1).
 //AUTO NAVIGATION SECTION
 set NAV_BOX to g:addhlayout.
     local LEF_SEC to NAV_BOX:addvlayout.
@@ -109,14 +110,15 @@ stage.
 LIST ENGINES IN myVariable.
 FOR eng IN myVariable {print "Max Thrust: " + eng:thrust.}
 INFO_BOX_CONTENT:addlabel("Weight :" + ROUND((ship:mass*1000)) + "kg").
-wait 1.
+wait 0.25.
 INFO_BOX_CONTENT:addlabel("Total Fuel: " + ROUND(ship:liquidfuel)).
-wait 1.
+wait 0.25.
 INFO_BOX_CONTENT:addlabel("Thrust: " + ROUND(availableThrust) + " Kw").
-wait 1.
+wait 0.25.
 set TWR to availableThrust / ship:mass.
 INFO_BOX_CONTENT:addlabel("TWR: " + ROUND(availableThrust / ship:mass)).
-wait 2.
+wait 0.5.
+INFO_BOX_CONTENT:addlabel("DIR: " + ROUND(ship:direction)).
 lock throttle to 0.
 
 
@@ -152,14 +154,16 @@ function doTakeOff {
     wait 1.
     doAutomaticThrottleControl().
     //INFO_BOX_CONTENT:addlabel("TKO PITCH: " + ROUND(TWR * 1.5) + " Degrees").
-    lock steering to heading(90,TWR * 2).
+    
+    //set TARDIR to ship:facing.
+    lock steering to heading(0,TWR * 2).
     when airspeed > 30 then {
         STATUS_BOX_STATUS:clear.
         STATUS_BOX_STATUS:addlabel ("Taking Off").
         SCROLL_BOX:addlabel ("Taking Off").
     }
     wait until altitude > 500. {
-        lock steering to heading(90,TWR * 3).
+        lock steering to heading(0,TWR * 3).
         ag1 off. //FLAPS
         gear off.
         lights off.
