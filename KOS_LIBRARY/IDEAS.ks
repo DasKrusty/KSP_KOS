@@ -2,56 +2,6 @@ ALTITUDE[1] 	ALT:RADAR[1]
 
 ETA:APOAPSIS[1] 	ETA:PERIAPSIS[1]
 
-
-Games
-Movies
-TV
-Video
-Wikis
-This wiki
- | 
-Start a Wiki
-KOS Wiki
-KOS Wiki
-68 Pages
-Add new page
-
-    k-OS Wiki Content
-    Media
-    The Hottest
-    Wiki help
-    Explore
-    Discuss
-
-in:
-Article stubs, KerboScript	
-List of all Commands
-View source
-Comments (8)
-Share
-
-    This article is a stub. You can help KOS Wiki by expanding it.
-
-Contents
-
-    Explanations:
-    Commands:
-        Self explaining commands:
-        Math Functions:
-        Execution Flow Control:
-        Manipulating booleans:
-        other:
-    System Variables:
-        Lockable variables:
-        Bindings:
-        System variables:
-    Other Informations:
-        To be Placed on this site:
-        Upcomming features:
-        Not working, without function or only partly implemented:
-        Notes:
-    Wikiupdate:
-
 Explanations:
 Commands:
 Self explaining commands:
