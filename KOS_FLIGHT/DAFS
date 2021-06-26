@@ -1,11 +1,11 @@
 DASKRUSTY'S AUTOMATED FLIGHT SYSTEM
 
 OBJECTIVE:
-    - Automated Take Off    - BUSY
     - Free FLIGHT           - COMPLETED
+    - Auto Throttle         - COMPLETED
+    - Automated Take Off    - BUSY
     - Automated Guidance    - PLANNING
     - Automated Landing     - PLANNING
-    - Auto Throttle         - COMPLETED
     - Recurring Print       - PLANNING
     - Test function         - PLANNING
 
