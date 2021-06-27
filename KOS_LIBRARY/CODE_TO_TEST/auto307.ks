@@ -28,7 +28,7 @@ global landingabort_allow is 1.		// allow landing abort if too low on the glides
 clearscreen.
 clearguis().
 switch to 0.
-run once database.
+//run once database.
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // U S E R   I N T E R F A C E
 // - MAIN
