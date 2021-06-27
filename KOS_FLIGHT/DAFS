@@ -3,7 +3,7 @@ DASKRUSTY'S AUTOMATED FLIGHT SYSTEM
 OBJECTIVE:
     - Free FLIGHT           - COMPLETED
     - Auto Throttle         - COMPLETED
-    - Automated Take Off    - BUSY
+    - Automated Take Off    - COMPLETED
     - Automated Guidance    - PLANNING
     - Automated Landing     - PLANNING
     - Recurring Print       - PLANNING
@@ -32,3 +32,5 @@ BUSY:
 COMPLETED:
     - Free flight function
     - Dynamic Throttle Control
+    - Automated Take Off
+        - Set direction of vessel current facing
