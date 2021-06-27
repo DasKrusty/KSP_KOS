@@ -152,30 +152,24 @@ function doTakeOff {
     brakes off.
     wait 1.
     doAutomaticThrottleControl().
-    //INFO_BOX_CONTENT:addlabel("TKO PITCH: " + ROUND(TWR * 1.5) + " Degrees").
-    //set TARDIR to ship:facing.
-    //set mydir to heading(degree)
-    set DIR to 90.
-    //SET X TO SHIP:PROGRADE + R(90,TWR * 2,0).
-    //lock steering to heading(DIR,TWR * 2).
-    lock steering to heading(DIR,TWR * 2).
-    //set DIR to 90 - VANG(ship:facing:vec, ship:up).
-    //set p to 90 - VANG(ship:facing:vec, ship:up).
+    set NDIR to (ship:bearing - 180).   //Set new direction for steering
+    sas off.
+    lock steering to heading(NDIR,TWR * 1.5).
     when airspeed > 30 then {
         STATUS_BOX_STATUS:clear.
         STATUS_BOX_STATUS:addlabel ("Taking Off").
         SCROLL_BOX:addlabel ("Taking Off").
     }
     wait until altitude > 500. {
-        lock steering to heading(DIR,TWR * 3).
+        lock steering to heading(NDIR,TWR * 2).
         ag1 off. //FLAPS
         gear off.
         lights off.
     }
     when altitude > 1000 then {
-        lock steering to heading(DIR,2).
-        wait 15.
-        set thrott to ((thrott - ship:dynamicpressure) - 0.25).
+        lock steering to heading(NDIR,2).
+        wait 20.
+        set thrott to ((thrott - ship:dynamicpressure) - 0.35).
         set ship:control:pilotmainthrottle to thrott.
         sas on. 
         STATUS_BOX_STATUS:clear.
