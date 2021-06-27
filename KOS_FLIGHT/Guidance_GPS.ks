@@ -18,10 +18,11 @@ function doGPS{
     set ils2 to latlng(-0.0486,-78).		//waypoint used for initial alignment with runway
 }.
 
-set TAR to latlng(-1.532,-71.880).
+set TAR to latlng(-0.0486,-74.60).
+sas off.
 until TAR:distance<7000{
-    lock steering to TAR:altitudeposition(5000).
-    print "Distance from Target = " + round(TAR:distance) + "m".
+    lock steering to TAR:altitudeposition(2500).
+    print "Distance from Target = " + round(TAR:distance) + "m" at (0,5).
     wait 0.1.
 }
 
