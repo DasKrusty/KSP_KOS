@@ -16,12 +16,13 @@ function doTESTFLIGHT{
         print "Altitude: "+round(NALT)+" m".
         print "Speed: "+round((NSPE*100)/60)+" km/h".
         print "Thrust"+round(availableThrust)+" Kw".
+        
 
     }
 
 function doENGINESPEC{
 LIST ENGINES IN myVariable.
-FOR eng IN myVariable {print "Max Thrust: " + eng:thrust.}
+FOR eng IN myVariable {print "Max Thrust: " + eng:thrust +" Fuel Rate: "+round(eng:fuelflow).}
 wait 0.25.
 INFO_BOX_CONTENT:addlabel("Total Fuel: " + ROUND(ship:liquidfuel)).
 wait 0.25.
