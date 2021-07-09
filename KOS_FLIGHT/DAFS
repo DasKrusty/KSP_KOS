@@ -25,12 +25,12 @@ PLANNED:
         - Must be able to select from either GPS, DID, LAB
 BUSY:
     - Automated Take Off
-        - Take Off function requires locked heading - find a way to get current direction and feed into TOf
-            - set DIR
+        
     - Dynamic Throttle Control  
         - Set a slider with ability to give more control on settings of DTC
 COMPLETED:
     - Free flight function
     - Dynamic Throttle Control
     - Automated Take Off
-        - Set direction of vessel current facing
+        - Take Off function requires locked heading - find a way to get current direction and feed into TOf
+            - set DIR
