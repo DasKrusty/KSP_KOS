@@ -1,6 +1,10 @@
 //DASKRUSTY'S AUTOMATED FLIGHT SYSTEM 
 //VERSION 0.03.08
 
+//IDEAS
+    //show / hide TKO based on status "landed"
+    //slider to control dynamic auto throttle
+    //switch between mach / km/h m/s - speed indicator
 
 //[[[M A I N   F U N C T I O N]]]
 function Main{
@@ -11,7 +15,7 @@ function Main{
 function doGUI{
     clearguis().
     clearscreen. print "GUI starting up".
-    set EXITGUI to false.
+    //set EXITGUI to false.
     wait 1.
     //core:part:getmodule("kOSProcessor"):doevent("Close Terminal").
 
@@ -94,7 +98,7 @@ function doCLOSEGUI{
     // G_MAIN_HEADER_STATUS:addlabel("Closing GUI").
     // SCROLL_BOX:addlabel("Closing GUI").
     wait 3.
-    set EXITGUI to true.
+    //set EXITGUI to true.
     print "closing".
     G_MAIN:hide().
 }
