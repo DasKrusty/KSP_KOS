@@ -1,19 +1,27 @@
 DASKRUSTY'S AUTOMATED FLIGHT SYSTEM
 
 OBJECTIVE:
-    - Free FLIGHT           - COMPLETED
-    - Auto Throttle         - COMPLETED
-    - Automated Take Off    - COMPLETED
-    - Automated Guidance    - PLANNING
-    - Automated Landing     - PLANNING
-    - Recurring Print       - PLANNING
-    - Test function         - PLANNING
+    - Rewrite GUI to function form  - WORKING
+    - Free FLIGHT                   - PLANNING
+    - Auto Throttle                 - PLANNING
+    - Automated Take Off            - PLANNING
+    - Automated Guidance            - PLANNING
+    - Automated Landing             - PLANNING
+    - Recurring Print               - PLANNING
+    - Test function                 - PLANNING
 
 PLANNED:
     - Automated Take Off
+        - Take Off function requires locked heading - find a way to get current direction and feed into TOf
+            - set DIR
         - Set flaps for quicker take off
         - Set engine mode for quicker take off
         - Slider for control over Direction
+        - Button to hide/show if landed or not.
+    - Free flight function
+    - Dynamic Throttle Control  
+        - Button to activate DTC
+        - Set a slider with ability to give more control on settings of DTC
     - Automated Guidance
         - Make drop down for Automated Guidance linked to BUTTON
         - Height
@@ -23,14 +31,23 @@ PLANNED:
         - GPS
             - 44.2564 / 181.5524
         - Must be able to select from either GPS, DID, LAB
-BUSY:
-    - Automated Take Off
         
-    - Dynamic Throttle Control  
-        - Set a slider with ability to give more control on settings of DTC
+    
+
+        
+WORKING:
+    - Rewrite GUI to function form
+        - Open GUI and hold (Dont close or end program)
+        - Minimise button to close all boxes excluding main and Title
+        - Close button to close GUI
+        - function - indicaters
+            - Create function to continously run stats
+                - Speed 
+                    - Select between m/s km/h mach
+                - Vertical Speed
+                - Thrust
+                - Range / fuel consumption
+                - Fuel
+                - TWR
 COMPLETED:
-    - Free flight function
-    - Dynamic Throttle Control
-    - Automated Take Off
-        - Take Off function requires locked heading - find a way to get current direction and feed into TOf
-            - set DIR
+    
