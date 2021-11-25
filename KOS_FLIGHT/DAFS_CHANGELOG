@@ -1,10 +1,11 @@
 DASKRUSTY'S AUTOMATED FLIGHT SYSTEM
 
 CHANGELOG:
+    V0.01.39    - Set up the GUI basics  - 2021/11/25
     V0.00.01    - The Start, blank, nadu - 2021/11/25
 
 OBJECTIVE:
-    - GUI                               - PLANNING
+    - GUI                               - COMPLETED
     - Print Stats                       - PLANNING
     - Free Flight                       - PLANNING
     - Dynamic Throttle Control          - PLANNING
@@ -14,19 +15,6 @@ OBJECTIVE:
     - Automated landing                 - PLANNING
 
 PLANNING:
-    - GUI
-        - Rewrite GUI to function form
-        - Open GUI and hold (Dont close or end program)
-        - Minimise button to close all boxes excluding main and Title
-        - Close button to close GUI
-        - STRUCTURE
-            - Title / Header
-            - Level 1
-                - Buttons / Stats / Settings
-            - Level 2
-                - Guidance / Settings for guidance
-            - Level 3
-                - Readout
     - Print Stats
         - Research how to continously write stats
         - function - indicaters
@@ -77,4 +65,16 @@ PLANNING:
 WORKING:
         
 COMPLETED:
-    
+    - GUI
+        - Rewrite GUI to function form
+        - Open GUI and hold (Dont close or end program)
+        - Minimise button to close all boxes excluding main and Title
+        - Close button to close GUI
+        - STRUCTURE
+            - Title / Header
+            - Level 1
+                - Buttons / Stats / Settings
+            - Level 2
+                - Guidance / Settings for guidance
+            - Level 3
+                - Readout

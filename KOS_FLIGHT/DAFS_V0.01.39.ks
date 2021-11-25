@@ -1,6 +1,5 @@
 //PLANNED
     //- GUI                               - PLANNING
-    // - Rewrite GUI to function form
         // - Open GUI and hold (Dont close or end program)
         // - Minimise button to close all boxes excluding main and Title
         // - Close button to close GUI
