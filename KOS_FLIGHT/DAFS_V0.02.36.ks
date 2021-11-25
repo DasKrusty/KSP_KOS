@@ -22,6 +22,13 @@ set g:style:height to WIN_OPEN.
 //TITLE
 local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.02.43" + "</i>").
 //HEADER BOX
+//HEADER BOX
+    //HEADER_TITLE_BOX
+        //HEADER_TITLE
+    //HEADER_NAME_BOX
+        //HEADER_NAME
+    // MIN_BUT
+    // CAN_BUT
 set HEADER_BOX to g:addhlayout.
     
     set HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
