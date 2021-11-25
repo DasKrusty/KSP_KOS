@@ -1,0 +1,80 @@
+DASKRUSTY'S AUTOMATED FLIGHT SYSTEM
+
+CHANGELOG:
+    V0.00.01    - The Start, blank, nadu - 2021/11/25
+
+OBJECTIVE:
+    - GUI                               - PLANNING
+    - Print Stats                       - PLANNING
+    - Free Flight                       - PLANNING
+    - Dynamic Throttle Control          - PLANNING
+    - Automated take off                - PLANNING
+    - Test function                     - PLANNING
+    - Automated guidance                - PLANNING
+    - Automated landing                 - PLANNING
+
+PLANNING:
+    - GUI
+        - Rewrite GUI to function form
+        - Open GUI and hold (Dont close or end program)
+        - Minimise button to close all boxes excluding main and Title
+        - Close button to close GUI
+        - STRUCTURE
+            - Title / Header
+            - Level 1
+                - Buttons / Stats / Settings
+            - Level 2
+                - Guidance / Settings for guidance
+            - Level 3
+                - Readout
+    - Print Stats
+        - Research how to continously write stats
+        - function - indicaters
+            - Create function to continously run stats
+                - Speed 
+                    - Select between m/s km/h mach
+                - Vertical Speed
+                - Thrust
+                - Range / fuel consumption
+                - Fuel
+                - TWR 
+    - Free Flight
+        - Stop all functions and set SAS
+    - Dynamic Throttle Control  
+        - Test current code in function mode
+        - Button to activate DTC
+        - Set a slider with ability to give more control on settings of DTC
+    - Automated Take Off
+        - Take Off function requires locked heading - find a way to get current direction and feed into TOf
+            - set DIR
+        - Set flaps for quicker take off
+        - Set engine mode for quicker take off
+        - Slider for control over Direction
+        - Button to hide/show if landed or not.
+    - Test Function 
+        - Purpose of Test Flight is to determine ultimate / best fuel consumption / speed / ceiling
+        - Printout at each 1000m 
+        - Start from 3000m 
+        - Scoring system???
+        - Set flight in a straight line and increase height by 1000m until craft cannot reach any higher
+            - Craft must stabilise at each 1000m then climb again
+            - Once craft cannot climb further, drop to best altitude and hold
+        - Agility???
+    - Automated Guidance
+        - Make drop down for Automated Guidance linked to BUTTON
+        - Height
+        - Speed
+        - Direction In Degrees
+            - <<    <   100 >   >>
+        - GPS
+            - 44.2564 / 181.5524
+        - Must be able to select from either GPS, DID, LAB
+    - Automated Landing
+        - Selection of where to land
+        - Plot three points to follow in
+        - Keep craft level where possible
+  
+WORKING:
+        
+COMPLETED:
+    
