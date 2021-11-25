@@ -30,11 +30,10 @@ local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" +
     // MIN_BUT
     // CAN_BUT
 set HEADER_BOX to g:addhlayout.
-    
-    set HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
-        set HEADER_TITLE to HEADER_TITLE_BOX:addlabel ("<b>" + "NAME: " + "</b>").
+    local HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
+        HEADER_TITLE_BOX:addlabel ("<b>" + "NAME: " + "</b>").
     set HEADER_NAME_BOX to HEADER_BOX:addhlayout.
-        set HEADER_NAME to HEADER_NAME_BOX:addlabel ("<b>" + ship:name + "</b>").
+        HEADER_NAME_BOX:addlabel ("<b>" + ship:name + "</b>").
         set HEADER_NAME:style:textcolor to yellow.
     set MIN_BUT to HEADER_BOX:addbutton ("_").
         set MIN_BUT:style:width to 50. 
