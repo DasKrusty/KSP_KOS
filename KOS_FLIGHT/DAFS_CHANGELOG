@@ -1,15 +1,17 @@
 DASKRUSTY'S AUTOMATED FLIGHT SYSTEM
 
 CHANGELOG:
-    V0.01.39    - Set up the GUI basics  - 2021/11/25
-    V0.00.01    - The Start, blank, nadu - 2021/11/25
+    V0.02.33    - Dynamic Throttle Control working
+                - Auto Take Off working             - 2021/11/25
+    V0.01.39    - Set up the GUI basics             - 2021/11/25
+    V0.00.01    - The Start, blank, nadu            - 2021/11/25
 
 OBJECTIVE:
     - GUI                               - COMPLETED
     - Print Stats                       - PLANNING
-    - Free Flight                       - PLANNING
-    - Dynamic Throttle Control          - PLANNING
-    - Automated take off                - PLANNING
+    - Free Flight                       - COMPLETED
+    - Dynamic Throttle Control          - WORKING
+    - Automated take off                - WORKING
     - Test function                     - PLANNING
     - Automated guidance                - PLANNING
     - Automated landing                 - PLANNING
@@ -26,19 +28,6 @@ PLANNING:
                 - Range / fuel consumption
                 - Fuel
                 - TWR 
-    - Free Flight
-        - Stop all functions and set SAS
-    - Dynamic Throttle Control  
-        - Test current code in function mode
-        - Button to activate DTC
-        - Set a slider with ability to give more control on settings of DTC
-    - Automated Take Off
-        - Take Off function requires locked heading - find a way to get current direction and feed into TOf
-            - set DIR
-        - Set flaps for quicker take off
-        - Set engine mode for quicker take off
-        - Slider for control over Direction
-        - Button to hide/show if landed or not.
     - Test Function 
         - Purpose of Test Flight is to determine ultimate / best fuel consumption / speed / ceiling
         - Printout at each 1000m 
@@ -63,6 +52,12 @@ PLANNING:
         - Keep craft level where possible
   
 WORKING:
+    - Dynamic Throttle Control  
+        - Set a slider with ability to give more control on settings of DTC
+    - Automated Take Off
+        - Set engine mode for quicker take off
+        - Slider for control over Direction
+        - Button to hide/show if landed or not.
         
 COMPLETED:
     - GUI
@@ -78,3 +73,8 @@ COMPLETED:
                 - Guidance / Settings for guidance
             - Level 3
                 - Readout
+    - Free Flight
+        - Stop all functions and set SAS
+    - Automated Take Off
+        - Take Off function requires locked heading - find a way to get current direction and feed into TOf
+            - set DIR
