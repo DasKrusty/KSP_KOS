@@ -1,5 +1,7 @@
 clearScreen.
 wait 1.
+print "DasKrusty's Automated Flight System".
+wait 1.
 if homeConnection:isconnected {
     print "Connection is available".
     wait 3.
@@ -11,18 +13,29 @@ else {
     print "Extend antennas else wait until connection is established".
     wait until homeConnection:isconnected.
 }
+wait 1.
+switch to 0.
+        list files.
+        // wait 1.
+        // switch to 1.
+        // // copy Aircraft.ks from 0.
+        // copyPath("0:Aircraft.ks","1:Aircraft.ks").
+        // run Aircraft.
+// C:\Program Files (x86)\Steam\steamapps\common\Kerbal Space Program\Ships\Script\KSP_KOS\.vscode\DAFS_MAIN\Aircraft.ks
+// print "Connection delay is " + vessel:connectiondelay + " sec".
 
-print "Connection delay is " + vessel:connection:delay + " sec".
-
-if vessel:name "Plane". {
-    if not exists("1:DAFS_V0.02.73.ks") {
-        copyPath("0:DAFS_V0.02.73.ks").
-        run DAFS_V0.02.73.
-    }
-}
-if vessel:name "Rocket". {
-    if not exists("1:DASLaunch.ks") {
-        copyPath("0:DASLaunch.ks").
-        run DASLaunch.
-    }
-}
+// if ship:heading = north {
+//     if not exists("1:Rocket.ks") {
+//         copyPath("0:Rocket.ks").
+//         run Rocket.
+//     }}
+// else {
+//     if not exists("1:/Aircraft.ks") {
+//         switch to 0.
+//         list files.
+//         wait 1.
+//         switch to 1.
+//         copy Aircraft. from 0.
+//         run Aircraft.
+//     }
+// }
