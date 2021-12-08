@@ -33,7 +33,7 @@ set g:style:padding:v to 5.
 
 //GUI LAYOUT
 //TITLE
-g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.02.77" + "</i>"). //Title
+g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.02.83" + "</i>"). //Title
 //HEADER
 set HEADER_BOX to g:addhlayout.
     local HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
@@ -117,8 +117,9 @@ set MAIN_BOX to g:addhlayout.
                         }
                     }.
         set DATSLI to SETTINGS_BOX:addhslider (4.75,30,1).          //NEW
+            set DATSVAL to 100.
             set DATSLI:onchange to doDATSLI@.
-            SETTINGS_BOX:addlabel ("DATS set @" ).
+        SETTINGS_BOX:addlabel ("DATS set @ " + round(DATSVAL) + "%").
 //LEVEL 2
 // AUTO NAVIGATION SECTION
 set NAV_BOX to g:addhlayout.
@@ -135,7 +136,7 @@ set NAV_BOX to g:addhlayout.
 //SCROLLING FEEDBACK
 set REF_BOX to g:addvbox.
     REF_BOX:addlabel ("<b>" + "STATUS READOUT" + "</b>").
-    set SCROLL_BOX to g:addscrollbox.
+    set SCROLL_BOX to g:addscrollbox.               //See if can reverse thread to show newest first
 
 g:show().
 
@@ -225,7 +226,7 @@ function doTakeOff {
 function doAutomaticThrottleControl {
     set thrott to 1.
     wait 1.
-    lock throttle to (thrott - ship:dynamicpressure).
+    lock throttle to ((thrott - ship:dynamicpressure)*DATSVAL).
     }
 
 function doFreeFlight {
@@ -234,7 +235,8 @@ function doFreeFlight {
 
 function doDATSLI {
     parameter newvalue.
-        SETTINGS_BOX:addlabel ("DATS set @" + round(100*(newvalue-DATSLI:min)/(DATSLI:max-DATSLI:min)) + "%").
+        set DATSVAL to (100*(newvalue-DATSLI:min)/(DATSLI:max-DATSLI:min)).
+        //SETTINGS_BOX:addlabel ("DATS set @ " + round(DATSVAL) + "%").
         // print "Value is " +
         //     round(100*(newvalue-DATSLI:min)/(DATSLI:max-DATSLI:min)) +
         //     "percentage".
