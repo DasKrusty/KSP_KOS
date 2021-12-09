@@ -4,6 +4,8 @@ wait 1.
 //core:part:getmodule("kOSProcessor"):doevent("Close Terminal").
 local EXITGUI is false.    
 
+// set TakeOff to TKO.
+
 //WINDOW SIZING & STYLING
 local WIN_OPEN is (500).
 local WIN_MIN is (77).
