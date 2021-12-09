@@ -1,3 +1,6 @@
+// Welcome to DusKrusty's Automated Flight System...
+// This script finds the type of vessel and executes the correct script based on the type of craft.
+
 clearScreen.
 wait 2.
 print "DasKrusty's Automated Flight System".
