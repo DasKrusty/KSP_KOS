@@ -33,7 +33,7 @@ set g:style:padding:v to 5.
 
 //GUI LAYOUT
 //TITLE
-g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.02.83" + "</i>"). //Title
+g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.02.98" + "</i>"). //Title
 //HEADER
 set HEADER_BOX to g:addhlayout.
     local HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
@@ -116,10 +116,10 @@ set MAIN_BOX to g:addhlayout.
                             SCROLL_BOX:addlabel ("Dynamic Throttle Control - Deactivated"). 
                         }
                     }.
-        set DATSLI to SETTINGS_BOX:addhslider (4.75,30,1).          //NEW
-            set DATSVAL to 100.
-            set DATSLI:onchange to doDATSLI@.
-        SETTINGS_BOX:addlabel ("DATS set @ " + round(DATSVAL) + "%").
+        // set DATSLI to SETTINGS_BOX:addhslider (4.75,30,1).          //NEW
+        set DATSLI to SETTINGS_BOX:addhslider (0.5,0,1).          //NEW - Dynamic Auto Throttle Slider
+        set DATSLI:onchange to doDATSLI@.
+        SETTINGS_BOX:addlabel ("DATS set @ " + (DATSVAL) + "%").
 //LEVEL 2
 // AUTO NAVIGATION SECTION
 set NAV_BOX to g:addhlayout.
@@ -223,24 +223,26 @@ function doTakeOff {
     }
     }
 
+function doDATSLI {
+    parameter NEWVAL.
+        // set DATSLI:onchange to NEWVAL.
+        print "Value is " + round(100*(NEWVAL-DATSLI:min)/(DATSLI:max-DATSLI:min)) + " percentage" at (1,terminal:height-4).
+        set NEWVAL to DATSVAL.
+        print NEWVAL at (1,terminal:height-5).
+        print ship:dynamicpressure at (1,terminal:height-6).
+}
+
 function doAutomaticThrottleControl {
     set thrott to 1.
     wait 1.
-    lock throttle to ((thrott - ship:dynamicpressure)*DATSVAL).
+    lock throttle to ((thrott - ship:dynamicpressure)+(DATSVAL)).
     }
 
 function doFreeFlight {
     Unlock all.
 }
 
-function doDATSLI {
-    parameter newvalue.
-        set DATSVAL to (100*(newvalue-DATSLI:min)/(DATSLI:max-DATSLI:min)).
-        //SETTINGS_BOX:addlabel ("DATS set @ " + round(DATSVAL) + "%").
-        // print "Value is " +
-        //     round(100*(newvalue-DATSLI:min)/(DATSLI:max-DATSLI:min)) +
-        //     "percentage".
-}
+
 
 // if (ship:ho = 0) { NOT WORKING NEED A FIX
 //     TKO:show.
