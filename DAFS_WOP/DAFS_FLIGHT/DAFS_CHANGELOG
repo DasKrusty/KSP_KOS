@@ -1,6 +1,7 @@
 DASKRUSTY'S AUTOMATED FLIGHT SYSTEM
 
 CHANGELOG:
+    V0.03.03    - Slider added for DTC              - 2021/12/18
     V0.02.33    - Dynamic Throttle Control working
                 - Auto Take Off working             - 2021/11/25
     V0.01.39    - Set up the GUI basics             - 2021/11/25
@@ -10,7 +11,7 @@ OBJECTIVE:
     - GUI                               - COMPLETED
     - Print Stats                       - PLANNING
     - Free Flight                       - COMPLETED
-    - Dynamic Throttle Control          - WORKING
+    - Dynamic Throttle Control          - COMPLETED
     - Automated take off                - WORKING
     - Test function                     - PLANNING
     - Automated guidance                - PLANNING
@@ -52,8 +53,6 @@ PLANNING:
         - Keep craft level where possible
   
 WORKING:
-    - Dynamic Throttle Control  
-        - Set a slider with ability to give more control on settings of DTC
     - Automated Take Off
         - Set engine mode for quicker take off
         - Slider for control over Direction
@@ -78,3 +77,5 @@ COMPLETED:
     - Automated Take Off
         - Take Off function requires locked heading - find a way to get current direction and feed into TOf
             - set DIR
+    - Dynamic Throttle Control  
+        - Set a slider with ability to give more control on settings of DTC
