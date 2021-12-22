@@ -30,7 +30,7 @@ set g:style:padding:v to 5.
 
 //GUI LAYOUT
 //TITLE
-g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.03.03" + "</i>"). //Title
+g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.03.22" + "</i>"). //Title
 //HEADER
 set HEADER_BOX to g:addhlayout.
     local HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
@@ -156,6 +156,10 @@ INFO_BOX_CONTENT:addlabel("TWR: " + ROUND(availableThrust / ship:mass)).
 wait 0.5.
 lock throttle to 0.
 
+//SETTINGS
+set OALT to ship:altitude.
+set OALT to 3000.
+
 //TRIGGERS
 LOCAL isDone IS FALSE.
 set TKO:onclick to doTakeOff@. // Takeoff
@@ -209,7 +213,7 @@ function doTakeOff {
         lock steering to heading(NDIR,2).
         wait 20.
         //set DAT:toggle to false.            //NEW
-        set thrott to ((thrott - ship:dynamicpressure) - 0.25).
+        set thrott to ((thrott - ship:dynamicpressure) - 0.15).
         set ship:control:pilotmainthrottle to thrott.
         sas on. 
         STATUS_BOX_STATUS:clear.
@@ -234,14 +238,15 @@ function doFreeFlight {
 }
 
 function doTestMode {
-    if ship:status = "Landed" or ship:altitude < 100{
+    if ship:altitude < 100 and airspeed < 50{
         STATUS_BOX_STATUS:clear.
         STATUS_BOX_STATUS:addlabel("Aircraft currently landed").
         SCROLL_BOX:addlabel("Aircraft currently landed").
         wait 3.
         doTakeOff().
+        doAutomaticThrottleControl().
     }
-    else if ship:altitude > 100{
+    else if ship:altitude > 100 and airspeed > 50{
         STATUS_BOX_STATUS:clear.
         STATUS_BOX_STATUS:addlabel("Aircraft currently flying").
         SCROLL_BOX:addlabel("Aircraft currently flying").
@@ -250,6 +255,7 @@ function doTestMode {
         STATUS_BOX_STATUS:clear.
         STATUS_BOX_STATUS:addlabel("Checking altitude").
         SCROLL_BOX:addlabel("Checking altitude").
+        doAutomaticThrottleControl().
             if ship:altitude > 3000{
                 lock steering to heading(NDIR,-30,0).
             }
@@ -258,6 +264,17 @@ function doTestMode {
             }
         
     }
+    until OALT = 3000. {
+        lock steering to heading(NDIR,10,0).
+        print "Altitude: " + OALT + " m".
+        print "Airspeed: " + round(ship:airspeed) + " m/s".
+        print "Total Fuel: " + ROUND(ship:liquidfuel).
+        print "Fuel Con: " + " l/s".
+        Print "Range: " + " km".
+        set NALT to OALT+1000.
+        print "New Alt: " + NALT + " m".
+        set OALT to NALT.
+    } 
     
 }
 
