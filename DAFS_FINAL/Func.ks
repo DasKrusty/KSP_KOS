@@ -22,9 +22,6 @@ else {
 set VAB to latlng(-0.097207,-74.557674).
 set SPH to latlng(-0.048617,-74.724722).
 
-// print VAB:distance + "m".
-// print SPH:distance + "m".
-
 wait 3.
 print "Attempting to verify type of craft".
 wait 2.
@@ -32,7 +29,7 @@ print "Running scan...".
 wait 2.
 
 if core:tag = "Aircraft" {
-        print "Craft recognised previously as an aircraft...".
+        print "Craft recognised previously as an AIRCRAFT...".
         wait 2.
         print "Script found on local drive and booting".
         wait 2.
@@ -42,7 +39,7 @@ if core:tag = "Aircraft" {
 }
 
 if core:tag = "Rocket" {
-        print "Craft recognised previously as a rocket type...".
+        print "Craft recognised previously as a ROCKET type...".
         wait 2.
         print "Script found on local drive and booting".
         wait 2.
