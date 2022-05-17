@@ -1,133 +1,183 @@
-//DASKRUSTY'S AUTOMATED FLIGHT SYSTEM 
-//VERSION 0.4.41
+//WORKING ON
+    //WORKING:
+        //     - Set engine mode for quicker take off
+        //     - Slider for control over Direction
+        //     - Button to hide/show if landed or not.
+        // - Test Function 
+        //     - Purpose of Test Flight is to determine ultimate / best fuel consumption / speed / ceiling
+        //     - Printout at each 1000m 
+        //     - Start from 3000m 
+        //     - Scoring system???
+        //     - Set flight in a straight line and increase height by 1000m until craft cannot reach any higher
+        //         - Craft must stabilise at each 1000m then climb again
+        //         - Once craft cannot climb further, drop to best altitude and hold
+        //     - Agility???
+clearguis().
+clearscreen. print "GUI starting up".
+wait 1.
+//core:part:getmodule("kOSProcessor"):doevent("Close Terminal"). 
+local EXITGUI is false.
 
-//IDEAS
-    //show / hide TKO based on status "landed"
-    //slider to control dynamic auto throttle
-    //switch between mach / km/h m/s - speed indicator
+local GUI_WID is 500. //gui width in px
+local GUI_MIN is 77. //gui minimised in px
+local g is gui(GUI_WID).
+set g:style:height to GUI_WID.
+set g:x to 10.
+set g:y to 60.
+set g:style:padding:h to 5.
+set g:style:padding:v to 5.
 
-//[[[M A I N   F U N C T I O N]]]
-function Main{
-    doGUI().
-}
 
-//[[GUI FUNCTION]]
-function doGUI{
-    clearguis().
-    clearscreen. print "GUI starting up".
-    set EXITGUI to false.
-    //local EXITGUI is false.
-    wait 1.
-    //core:part:getmodule("kOSProcessor"):doevent("Close Terminal").
-
-    //[GUI BODY SETTINGS]
-    set WIN_OPEN to 500.
-    set WIN_MIN to 77.
-    set G_MAIN to gui(WIN_OPEN).
-    set G_MAIN:x to 50. //main gui starting position
-    set G_MAIN:y to 50.	//main gui starting position
-    set G_MAIN:style:padding:h to 5.    //main gui padding
-    set G_MAIN:style:padding:v to 5.    //main gui padding
-    set G_MAIN:style:height to WIN_OPEN.    //set gui to window open size 
-
-    //[GUI FUNCTION SETUP]
-    //[TITLE]
-    set G_MAIN_TITLE to G_MAIN:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.03.08" + "</i>").
-        set G_MAIN_TITLE:style:textcolor to rgb(1,1,0). //light orange
-        set G_MAIN_TITLE:style:fontsize to 13.
-        set G_MAIN_TITLE:style:margin:top to 10.
-        //set G_MAIN_TITLE:style:margin:bottom to 15.
-    //[HEADER BOX]
-    set G_MAIN_HEADER to G_MAIN:addhlayout.
-        set G_MAIN_HEADER_BOX1 to G_MAIN_HEADER:addhlayout. //Header title box
-            set G_MAIN_HEADER_TITLE to G_MAIN_HEADER_BOX1:addlabel ("<b>" + "NAME: " + "</b>"). //Header title
-                set G_MAIN_HEADER_TITLE:style:textcolor to rgb(1,1,0).
-        set G_MAIN_HEADER_BOX2 to G_MAIN_HEADER:addhlayout. //Header name box
-            set G_MAIN_HEADER_NAME to G_MAIN_HEADER_BOX2:addlabel ("<b>" + ship:name + "</b>"). //Header name
-                set G_MAIN_HEADER_NAME:style:textcolor to white.
-        set MIN_BUT to G_MAIN_HEADER:addbutton ("_"). //Minimise button
-            set MIN_BUT:style:width to 50.
-            set MIN_BUT:style:textcolor to red. 
-            set MIN_BUT:toggle to true.
+//GUI LAYOUT
+//TITLE
+g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.03.22" + "</i>"). //Title
+//HEADER
+set HEADER_BOX to g:addhlayout.
+    local HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
+        HEADER_TITLE_BOX:addlabel ("<b>" + "NAME: " + "</b>"). //Header Name
+    local HEADER_NAME_BOX to HEADER_BOX:addhlayout.
+        HEADER_NAME_BOX:addlabel ("<b>" + ship:name + "</b>"). //Ship Name
+        set HEADER_NAME_BOX:style:textcolor to yellow.
+    local MIN_BUT to HEADER_BOX:addbutton ("_").
+        set MIN_BUT:style:width to 50. 
+        set MIN_BUT:toggle to true.
             set MIN_BUT:ontoggle to { 
                 parameter b. 
                 if b {
-                    set G_MAIN:style:height to WIN_MIN.
-                    G_MAIN_STATUS:hide.
-                    G_MAIN_MAIN:hide.
-                    // REF_BOX:hide.
-                    // SCROLL_BOX:hide.
+                    set g:style:height to GUI_MIN.
+                    STATUS_BOX:hide.
+                    MAIN_BOX:hide.
+                    REF_BOX:hide.
+                    SCROLL_BOX:hide.
                 }
                 else {
-                    set G_MAIN:style:height to WIN_OPEN.
-                    G_MAIN_STATUS:show.
-                    G_MAIN_MAIN:show.
-                    // REF_BOX:show.
-                    // SCROLL_BOX:show.
+                    set g:style:height to GUI_WID.
+                    STATUS_BOX:show.
+                    MAIN_BOX:show.
+                    REF_BOX:show.
+                    SCROLL_BOX:show.
                 }
             }.
-        set CAN_BUT to G_MAIN_HEADER:addbutton ("X"). //Close
-            set CAN_BUT:style:width to 50.
-            set CAN_BUT:style:textcolor to red. 
-            set CAN_BUT:onclick to {doCLOSEGUI().}.
-    //[STATUS BAR]
-    set G_MAIN_STATUS to G_MAIN:addhlayout.
-        set G_MAIN_STATUS:style:padding:h to 5.
-        set G_MAIN_STATUS:style:padding:v to 5.
-        set G_MAIN_STATUS_TITLE to G_MAIN_STATUS:addhlayout.
-            G_MAIN_STATUS_TITLE:addlabel ("<b>" + "CURRENT STATUS:" + "</b>").
-                set G_MAIN_STATUS_TITLE:style:width to 152.
-                set G_MAIN_STATUS_TITLE:style:textcolor to rgb(1,0,0).
-        set G_MAIN_STATUS_STATUS to G_MAIN_STATUS:addhbox.
-            G_MAIN_STATUS_STATUS:addlabel ("Waiting").
-                set G_MAIN_STATUS:style:textcolor to yellow.
-    //[MAIN CONTENT]
-    set G_MAIN_MAIN to G_MAIN:addhlayout.
-        set RUNMODE to G_MAIN_MAIN:addvlayout.
-            RUNMODE:addlabel ("<b>" + "RUN MODE" + "</b>").
-                set RUNMODE:style:textcolor to rgb(1,0,0).
-                set RUNMODE:style:width to 120.
-                set RUNMODE:style:align to "left".
-                set TKO to RUNMODE:addbutton ("Take Off").
-                set FRE to RUNMODE:addbutton ("Free Flight").
-        local INFO_BOX to G_MAIN_MAIN:addvlayout.
-            INFO_BOX:addlabel ("<b>" + "INFO" + "</b>").
-            set INFO_BOX_CONTENT to INFO_BOX:addvbox.
-        local THIRD_CONTENT_BOX to G_MAIN_MAIN:addvlayout.
-            THIRD_CONTENT_BOX:addlabel ("<b>" + "SETTINGS" + "</b>").
-            set SETTINGS_BOX to THIRD_CONTENT_BOX:addvbox.
-                set DAT to SETTINGS_BOX:addcheckbox ("Dynamic Auto Throttle").
-                    set DAT:toggle to true.
-                        set DAT:ontoggle to {
-                            parameter C.
-                            if C {
-                                doAutomaticThrottleControl().
-                                STATUS_BOX_STATUS:clear.
-                                STATUS_BOX_STATUS:addlabel ("DYNAMIC THROTTLE CONTROL - ACTIVATED"). 
-                                SCROLL_BOX:addlabel ("Dynamic Throttle Control - Activated"). 
-                            }
-                            else {
-                                unlock throttle.
-                                STATUS_BOX_STATUS:clear.
-                                STATUS_BOX_STATUS:addlabel ("DYNAMIC THROTTLE CONTROL - DEACTIVATED"). 
-                                SCROLL_BOX:addlabel ("Dynamic Throttle Control - Deactivated"). 
-                            }
-                        }.
-                set DTC to SETTINGS_BOX:addhslider (4.75,30,1).
+    local CAN_BUT to HEADER_BOX:addbutton ("X").
+        set CAN_BUT:style:width to 50.
+        set CAN_BUT:style:textcolor to yellow. 
+        set CAN_BUT:onclick to {doCLOSEGUI().}.
+//LEVEL 1
+//STATUS BAR
+set STATUS_BOX to g:addhlayout.
+    set STATUS_BOX_LABEL to STATUS_BOX:addhlayout.
+        STATUS_BOX_LABEL:addlabel ("<b>" + "CURRENT STATUS:" + "</b>").
+            set STATUS_BOX_LABEL:style:width to 150. 
+    set STATUS_BOX_STATUS to STATUS_BOX:addhbox.
+        STATUS_BOX_STATUS:addlabel ("Waiting").
+        set STATUS_BOX_STATUS:style:textcolor to yellow.
+//MAIN CONTENT
+set MAIN_BOX to g:addhlayout.
+    local RUNMODE to MAIN_BOX:addvlayout.
+        RUNMODE:addlabel ("<b>" + "RUN MODE" + "</b>").
+        set RUNMODE:style:width to 120.
+        set RUNMODE:style:align to "left".
+            set TKO to RUNMODE:addbutton ("Take Off").
+            set NAV to RUNMODE:addbutton ("Navigation").
+                set NAV:toggle to true.
+                    set NAV:ontoggle to {
+                        parameter D.
+                        if D {
+                            NAV_BOX:show.
+                        }
+                        else {
+                            NAV_BOX:hide.
+                        }
+                    }.
+            set TES to RUNMODE:addbutton ("Test Mode").
+            set FRE to RUNMODE:addbutton ("Free Flight").
+    local INFO_BOX to MAIN_BOX:addvlayout.
+        INFO_BOX:addlabel ("<b>" + "INFO" + "</b>").
+        set INFO_BOX_CONTENT to INFO_BOX:addvbox.
+    local THIRD_CONTENT_BOX to MAIN_BOX:addvlayout.
+        THIRD_CONTENT_BOX:addlabel ("<b>" + "SETTINGS" + "</b>").
+        set SETTINGS_BOX to THIRD_CONTENT_BOX:addvbox.
+            set DAT to SETTINGS_BOX:addcheckbox ("Dynamic Auto Throttle").
+                set DAT:toggle to true.
+                    set DAT:ontoggle to {
+                        parameter C.
+                        if C {
+                            doAutomaticThrottleControl().
+                            STATUS_BOX_STATUS:clear.
+                            STATUS_BOX_STATUS:addlabel ("DYNAMIC THROTTLE CONTROL - ACTIVATED"). 
+                            SCROLL_BOX:addlabel ("Dynamic Throttle Control - Activated"). 
+                        }
+                        else {
+                            unlock throttle.
+                            STATUS_BOX_STATUS:clear.
+                            STATUS_BOX_STATUS:addlabel ("DYNAMIC THROTTLE CONTROL - DEACTIVATED"). 
+                            SCROLL_BOX:addlabel ("Dynamic Throttle Control - Deactivated"). 
+                        }
+                    }.
+ 
+        set DATSLI to SETTINGS_BOX:addhslider (0,-0.5,0.5).          //NEW - Dynamic Auto Throttle Slider
 
+//LEVEL 2
+// AUTO NAVIGATION SECTION
+set NAV_BOX to g:addhlayout.
+    local LEF_SEC to NAV_BOX:addvlayout.
+        LEF_SEC:addlabel ("Left Section").
+    local MID_SEC to NAV_BOX:addvlayout.
+        MID_SEC:addlabel ("Middle Section").
+        //HEADING
+            //Setup - B1"<<" B2"<" T"" B3">" B4">>" 
+        //HEIGHT
+    local RIG_SEC to NAV_BOX:addvlayout.
+        RIG_SEC:addlabel ("Right Section").
+//LEVEL 3
+//SCROLLING FEEDBACK
+set REF_BOX to g:addvbox.
+    REF_BOX:addlabel ("<b>" + "STATUS READOUT" + "</b>").
+    set SCROLL_BOX to g:addscrollbox.               //See if can reverse thread to show newest first
 
-    G_MAIN:show().
-}
+g:show().
 
+//PREFLIGHT CHECK
+sas off.
+lock throttle to 1.
+brakes on.
+wait 1.
+stage.
+LIST ENGINES IN myVariable.
+FOR eng IN myVariable {print "Max Thrust: " + eng:thrust.}
+INFO_BOX_CONTENT:addlabel("Weight :" + ROUND((ship:mass*1000)) + "kg").
+wait 0.25.
+INFO_BOX_CONTENT:addlabel("Total Fuel: " + ROUND(ship:liquidfuel)).
+wait 0.25.
+INFO_BOX_CONTENT:addlabel("Thrust: " + ROUND(availableThrust) + " Kw").
+wait 0.25.
+set TWR to availableThrust / ship:mass.
+INFO_BOX_CONTENT:addlabel("TWR: " + ROUND(availableThrust / ship:mass)).
+wait 0.5.
+lock throttle to 0.
+
+//SETTINGS
+set OALT to ship:altitude.
+set OALT to 3000.
+
+//TRIGGERS
+LOCAL isDone IS FALSE.
+set TKO:onclick to doTakeOff@. // Takeoff
+set FRE:onclick to doFreeFlight@. //Free Flight Mode
+set DAT:onclick to doAutomaticThrottleControl@. //Dynamic Throttle Control
+set TES:onclick to doTestMode@.
+
+//SETTINGS
+set NDIR to (ship:bearing - 180).
+//FUNCTIONS
 function doCLOSEGUI{
-    // STATUS_BOX_STATUS:clear.
-    // STATUS_BOX_STATUS:addlabel("Closing GUI").
-    // SCROLL_BOX:addlabel("Closing GUI").
+    STATUS_BOX_STATUS:clear.
+    STATUS_BOX_STATUS:addlabel("Closing GUI").
+    SCROLL_BOX:addlabel("Closing GUI").
     wait 3.
     set EXITGUI to true.
-    //local EXITGUI is true.
     print "closing".
-    G_MAIN:hide().
+    g:hide().
 }
 
 function doTakeOff {
@@ -137,11 +187,13 @@ function doTakeOff {
     SCROLL_BOX:addlabel ("Proceeding to take off").
     lights on.
     wait 3.
+    // TKO:hide. 
     STATUS_BOX_STATUS:clear.
     STATUS_BOX_STATUS:addlabel ("Precheck done").
     SCROLL_BOX:addlabel ("Precheck done").
     brakes off.
     wait 1.
+    //set DAT:toggle to true.         //NEW
     doAutomaticThrottleControl().
     set NDIR to (ship:bearing - 180).   //Set new direction for steering
     sas off.
@@ -160,7 +212,8 @@ function doTakeOff {
     when altitude > 1000 then {
         lock steering to heading(NDIR,2).
         wait 20.
-        set thrott to ((thrott - ship:dynamicpressure) - 0.35).
+        //set DAT:toggle to false.            //NEW
+        set thrott to ((thrott - ship:dynamicpressure) - 0.15).
         set ship:control:pilotmainthrottle to thrott.
         sas on. 
         STATUS_BOX_STATUS:clear.
@@ -174,5 +227,58 @@ function doTakeOff {
     }
     }
 
-//until false.
-Main().
+function doAutomaticThrottleControl {
+    set thrott to 1.
+    wait 1.
+    lock throttle to (((thrott+DATSLI:value) - ship:dynamicpressure)).
+    }
+
+function doFreeFlight {
+    Unlock all.
+}
+
+function doTestMode {
+    if ship:altitude < 100 and airspeed < 50{
+        STATUS_BOX_STATUS:clear.
+        STATUS_BOX_STATUS:addlabel("Aircraft currently landed").
+        SCROLL_BOX:addlabel("Aircraft currently landed").
+        wait 3.
+        doTakeOff().
+        doAutomaticThrottleControl().
+    }
+    else if ship:altitude > 100 and airspeed > 50{
+        STATUS_BOX_STATUS:clear.
+        STATUS_BOX_STATUS:addlabel("Aircraft currently flying").
+        SCROLL_BOX:addlabel("Aircraft currently flying").
+        sas off.
+        wait 3.
+        STATUS_BOX_STATUS:clear.
+        STATUS_BOX_STATUS:addlabel("Checking altitude").
+        SCROLL_BOX:addlabel("Checking altitude").
+        doAutomaticThrottleControl().
+            if ship:altitude > 3000{
+                lock steering to heading(NDIR,-30,0).
+            }
+            else if ship:altitude < 3000{
+                lock steering to heading(NDIR,10,0).
+            }
+        
+    }
+    until OALT = 3000. {
+        lock steering to heading(NDIR,10,0).
+        print "Altitude: " + OALT + " m".
+        print "Airspeed: " + round(ship:airspeed) + " m/s".
+        print "Total Fuel: " + ROUND(ship:liquidfuel).
+        print "Fuel Con: " + " l/s".
+        Print "Range: " + " km".
+        set NALT to OALT+1000.
+        print "New Alt: " + NALT + " m".
+        set OALT to NALT.
+    } 
+    
+}
+
+// if ship:altitude < 100.{
+//     TKO:show.
+// }
+wait until EXITGUI. // program will stay here until exit clicked.

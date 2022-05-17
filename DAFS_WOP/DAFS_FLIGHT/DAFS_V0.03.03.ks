@@ -1,21 +1,17 @@
-//PLANNED
-    //- GUI                               - PLANNING
-        // - Open GUI and hold (Dont close or end program)
-        // - Minimise button to close all boxes excluding main and Title
-        // - Close button to close GUI
-        // - STRUCTURE
-        //     - Title / Header
-        //     - Level 1
-        //         - Buttons / Stats / Settings
-        //     - Level 2
-        //         - Guidance / Settings for guidance
-        //     - Level 3
-        //         - Readout
 //WORKING ON
-    //- GUI
-        
-//COMPLETED
-
+    //WORKING:
+        //     - Set engine mode for quicker take off
+        //     - Slider for control over Direction
+        //     - Button to hide/show if landed or not.
+        // - Test Function 
+        //     - Purpose of Test Flight is to determine ultimate / best fuel consumption / speed / ceiling
+        //     - Printout at each 1000m 
+        //     - Start from 3000m 
+        //     - Scoring system???
+        //     - Set flight in a straight line and increase height by 1000m until craft cannot reach any higher
+        //         - Craft must stabilise at each 1000m then climb again
+        //         - Once craft cannot climb further, drop to best altitude and hold
+        //     - Agility???
 clearguis().
 clearscreen. print "GUI starting up".
 wait 1.
@@ -34,7 +30,7 @@ set g:style:padding:v to 5.
 
 //GUI LAYOUT
 //TITLE
-g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.02.33" + "</i>"). //Title
+g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.03.03" + "</i>"). //Title
 //HEADER
 set HEADER_BOX to g:addhlayout.
     local HEADER_TITLE_BOX to HEADER_BOX:addhlayout.
@@ -83,6 +79,17 @@ set MAIN_BOX to g:addhlayout.
         set RUNMODE:style:align to "left".
             set TKO to RUNMODE:addbutton ("Take Off").
             set FRE to RUNMODE:addbutton ("Free Flight").
+            set NAV to RUNMODE:addbutton ("Navigation").
+                set NAV:toggle to true.
+                    set NAV:ontoggle to {
+                        parameter D.
+                        if D {
+                            NAV_BOX:hide.
+                        }
+                        else {
+                            NAV_BOX:show.
+                        }
+                    }.
     local INFO_BOX to MAIN_BOX:addvlayout.
         INFO_BOX:addlabel ("<b>" + "INFO" + "</b>").
         set INFO_BOX_CONTENT to INFO_BOX:addvbox.
@@ -106,21 +113,26 @@ set MAIN_BOX to g:addhlayout.
                             SCROLL_BOX:addlabel ("Dynamic Throttle Control - Deactivated"). 
                         }
                     }.
-            // set DTC to SETTINGS_BOX:addhslider (4.75,30,1).
+ 
+        set DATSLI to SETTINGS_BOX:addhslider (0,-0.5,0.5).          //NEW - Dynamic Auto Throttle Slider
+
 //LEVEL 2
-//AUTO NAVIGATION SECTION
-// set NAV_BOX to g:addhlayout.
-//     local LEF_SEC to NAV_BOX:addvlayout.
-//     local MID_SEC to NAV_BOX:addvlayout.
-//         //HEADING
-//             //Setup - B1"<<" B2"<" T"" B3">" B4">>" 
-//         //HEIGHT
-//     local RIG_SEC to NAV_BOX:addvlayout.
+// AUTO NAVIGATION SECTION
+set NAV_BOX to g:addhlayout.
+    local LEF_SEC to NAV_BOX:addvlayout.
+        LEF_SEC:addlabel ("Left Section").
+    local MID_SEC to NAV_BOX:addvlayout.
+        MID_SEC:addlabel ("Middle Section").
+        //HEADING
+            //Setup - B1"<<" B2"<" T"" B3">" B4">>" 
+        //HEIGHT
+    local RIG_SEC to NAV_BOX:addvlayout.
+        RIG_SEC:addlabel ("Right Section").
 //LEVEL 3
 //SCROLLING FEEDBACK
 set REF_BOX to g:addvbox.
     REF_BOX:addlabel ("<b>" + "STATUS READOUT" + "</b>").
-    set SCROLL_BOX to g:addscrollbox.
+    set SCROLL_BOX to g:addscrollbox.               //See if can reverse thread to show newest first
 
 g:show().
 
@@ -167,11 +179,13 @@ function doTakeOff {
     SCROLL_BOX:addlabel ("Proceeding to take off").
     lights on.
     wait 3.
+    // TKO:hide. NEED A FIX
     STATUS_BOX_STATUS:clear.
     STATUS_BOX_STATUS:addlabel ("Precheck done").
     SCROLL_BOX:addlabel ("Precheck done").
     brakes off.
     wait 1.
+    //set DAT:toggle to true.         //NEW
     doAutomaticThrottleControl().
     set NDIR to (ship:bearing - 180).   //Set new direction for steering
     sas off.
@@ -190,7 +204,8 @@ function doTakeOff {
     when altitude > 1000 then {
         lock steering to heading(NDIR,2).
         wait 20.
-        set thrott to ((thrott - ship:dynamicpressure) - 0.35).
+        //set DAT:toggle to false.            //NEW
+        set thrott to ((thrott - ship:dynamicpressure) - 0.25).
         set ship:control:pilotmainthrottle to thrott.
         sas on. 
         STATUS_BOX_STATUS:clear.
@@ -202,18 +217,21 @@ function doTakeOff {
         STATUS_BOX_STATUS:addlabel ("CONTROL IS YOURS"). 
         SCROLL_BOX:addlabel ("CONTROL IS YOURS"). 
     }
-    wait 10.
-    TKO:hide.
     }
 
 function doAutomaticThrottleControl {
     set thrott to 1.
     wait 1.
-    lock throttle to (thrott - ship:dynamicpressure).
+    lock throttle to (((thrott+DATSLI:value) - ship:dynamicpressure)).
     }
 
 function doFreeFlight {
     Unlock all.
 }
 
+
+
+// if (ship:ho = 0) { NOT WORKING NEED A FIX
+//     TKO:show.
+// }
 wait until EXITGUI. // program will stay here until exit clicked.
