@@ -1,7 +1,8 @@
 DASKRUSTY'S AUTOMATED FLIGHT SYSTEM for AIRCRAFT
 
 CHANGELOG:
-    V0.00.01    - The Start, blank, nadu            - 2022/05/15
+    V0.00.14    - Added sections                    - 2022/05/18
+    V0.00.00    - The Start, blank, nada            - 2022/05/15
 
 FUNCTIONALITY REQUIRED
     - GUI
@@ -18,7 +19,7 @@ FUNCTIONALITY REQUIRED
         - Emergency Landing - But not in the water
 
 OBJECTIVE:
-    - GUI                               - PLANNING
+    - GUI                               - WORKING
     - Print Stats                       - PLANNING
     - Free Flight                       - PLANNING
     - Dynamic Throttle Control          - PLANNING
@@ -33,14 +34,6 @@ PLANNING:
         - Open GUI and hold (Dont close or end program)
         - Minimise button to close all boxes excluding main and Title
         - Close button to close GUI
-        - STRUCTURE
-            - Title / Header
-            - Level 1
-                - Buttons / Stats / Settings
-            - Level 2
-                - Guidance / Settings for guidance
-            - Level 3
-                - Readout
     - Print Stats
         - Research how to continously write stats
         - function - indicaters
@@ -86,5 +79,13 @@ PLANNING:
         - Keep craft level where possible
 
 WORKING ON:
+        - STRUCTURE
+            - Title / Header
+            - Level 1
+                - Buttons / Stats / Settings
+            - Level 2
+                - Guidance / Settings for guidance
+            - Level 3
+                - Readout
 
 COMPLETED:
