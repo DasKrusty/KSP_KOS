@@ -1,5 +1,5 @@
 // DASKRUSTY AUTOMATED FLIGHT SYSTEM FOR AIRCRAFT
-// VERSION 0.00.35
+// VERSION 0.00.46
 
 // - GUI
 clearguis().
@@ -14,16 +14,22 @@ local g is gui(WIN_OPEN).
 set g:style:height to WIN_OPEN.
 //   - SECTION HEAD
 //     - TITLE
-local TITLE to g:addlabel("<b>" + "DASKRUSTY AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.00.35" + "</i>").
+local TIT to g:addlabel("<b>" + "DASKRUSTY'S AUTOMATED FLIGHT SYSTEM" + "</b>" + "<i>" + "                                       V0.00.46" + "</i>").
 //     - HEADER
-set HEADER_BOX to g:addhlayout.
+set HEA_BOX to g:addhlayout.
+    local HEA_TIT_BOX to HEA_BOX:addhlayout.
+        local HEA_TIT to HEA_TIT_BOX:addlabel ("<b>" + "NAME: " + "</b>").
+    local HEA_NAM_BOX to HEA_BOX:addhlayout.
+        set HEA_NAM to HEA_NAM_BOX:addlabel ("<b>" + ship:name + "</b>").
+    local MIN_BUT to HEA_BOX:addbutton ("_").
+    local CAN_BUT to HEA_BOX:addbutton ("X").
 //     - STATUS BAR
-set STATUS_BOX to g:addhlayout.
+set STA_BOX to g:addhlayout.
 //   - SECTION ONE - MAIN CONTENT
-set MAIN_BOX to g:addhlayout.
+set MAI_BOX to g:addhlayout.
     local RUNMODE to MAIN_BOX:addvlayout. // Button section
     local INFO_BOX to MAIN_BOX:addvlayout. // Main content to be updated continously
-    local THIRD_CONTENT_BOX to MAIN_BOX:addvlayout. // Settings
+    local SETTINGS_BOX to MAIN_BOX:addvlayout. // Settings
 //   - SECTION TWO - NAVIGATION
 set NAV_BOX to g:addhlayout.
     local LEF_SEC to NAV_BOX:addvlayout.

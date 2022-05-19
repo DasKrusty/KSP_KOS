@@ -79,7 +79,8 @@ PLANNING:
         - Keep craft level where possible
 
 WORKING ON:
-        - STRUCTURE
+    - GUI
+        - STRUCTURE - DONE
             - Title / Header
             - Level 1
                 - Buttons / Stats / Settings
@@ -87,5 +88,7 @@ WORKING ON:
                 - Guidance / Settings for guidance
             - Level 3
                 - Readout
+        - HEADINGS
+            - Add all Headings to start building out the sections
 
 COMPLETED:
