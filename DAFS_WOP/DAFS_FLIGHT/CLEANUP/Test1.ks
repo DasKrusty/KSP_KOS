@@ -1,33 +1,3 @@
-Skip to content
-Product 
-Team
-Enterprise
-Explore 
-Marketplace
-Pricing 
-Search
-Sign in
-Sign up
-ozin370
-/
-Script
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Script/gui_template.ks
-
-Ozin GUI template and skin for HoverBot
-Latest commit 733fa6d on Aug 27, 2017
- History
- 0 contributors
-513 lines (446 sloc)  19.4 KB
-   
 clearguis().
 clearscreen. print "gui running.".
 local exit is false.
