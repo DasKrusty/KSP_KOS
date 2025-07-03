@@ -1,20 +1,40 @@
 // This script is to test new craft to find out their capabilities with regards to ceiling, speed and range.
-// Version: 0.58
+// Version: 1.04
 // POA:
-// Engine test
+// status check - check if aircraft is landed or currently flying
 // take off
 // run test per 1000m, capturing ceiling, speed and range
 
 function Main {
-    doEngineSpec().
-    wait 3.
-    doSetHeading().
-    doAutomaticThrottleControl().
+    doFlightStatus().
+    // doEngineSpec().
+    // doAutomaticThrottleControl().
+    // doSetHeading().
     // doTakeOff().
     // doTestFlight().
+    print "Test Ended"
+    wait 10.
+}
+
+function doFlightStatus {
+    print "Checking status".
+    if SHIP:STATUS = "LANDED" {
+        print "Aircraft Status: LANDED".
+    }
+    if ship:status = "Flying" {
+        sas off.
+        print "Aircraft Status: FLYING".
+        wait 1.
+        print "Adjusting Altitude".
+        lock throttle to 0.
+	    lock steering to heading(NDIR,-20).
+        wait until altitude < 1000.
+        lock steering to heading(NDIR,0).
+    }
 }
 
 function doEngineSpec {
+    print "Testing engines".
     lock throttle to 1.
     brakes on.
     wait 1.
@@ -33,20 +53,31 @@ function doEngineSpec {
     lock throttle to 0.
 }
 
-function doSetHeading {
-    set NDIR to (ship:bearing - 180).   // Sets new direction for heading.
-    sas off.
-    lock steering to heading(NDIR,TWR * 1.5). // Sets new direction with TWR math degree climb.
-}
-
 function doAutomaticThrottleControl {
+    print "Throttle set to Auto".
     set thrott to 1.
     wait 1.
     lock throttle to (thrott - ship:dynamicpressure).
+}
+
+function doSetHeading {
+    set NDIR to (ship:bearing - 180).   // Sets new direction for heading.
+    sas off.
+    lock steering to heading(NDIR,0). // Sets new direction with 0 degree climb.
+}
+
+function doTakeOff {
+    if SHIP:STATUS = "LANDED" {
+        brakes off
+        when airspeed > 60 then {
+            lock steering to heading(NDIR,TWR * 1.5).
+        }
+        when ship:altitude > 100 then {
+            gear off
+        }
     }
+}
 
-// function doTakeOff {}
-
-// function doTestFlight {}
+function doTestFlight {}
 
 main().
