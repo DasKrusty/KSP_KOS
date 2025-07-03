@@ -27,6 +27,7 @@ function doFlightStatus {
         wait 1.
         print "Adjusting Altitude".
         lock throttle to 0.
+        set NDIR to (ship:bearing - 180).
 	    lock steering to heading(NDIR,-20).
         wait until altitude < 1000.
         lock steering to heading(NDIR,0).
@@ -63,21 +64,40 @@ function doAutomaticThrottleControl {
 function doSetHeading {
     set NDIR to (ship:bearing - 180).   // Sets new direction for heading.
     sas off.
+    set NALT to 1000
     lock steering to heading(NDIR,0). // Sets new direction with 0 degree climb.
 }
 
 function doTakeOff {
     if SHIP:STATUS = "LANDED" {
-        brakes off
+        brakes off.
         when airspeed > 60 then {
             lock steering to heading(NDIR,TWR * 1.5).
         }
         when ship:altitude > 100 then {
-            gear off
+            gear off.
         }
     }
 }
 
-function doTestFlight {}
+//function doTestFlight {
+//    set OSPE to airspeed.
+//
+//    if ship:altitude < NALT {
+ //       lock steering to heading(NDIR,TWR * 1.5).
+//        when ship:altitude >= NALT then {
+//        lock steering to heading(NDIR,0).
+//        wait 30.
+//        print ("Alt: " + ship:altitude).
+//        print ("Spe: " + airspeed).
+//        set OALT to ship:altitude.
+ //       set OSPE to airspeed.
+//        set NALT to OALT + 1000.
+//        }
+//    }
+//    if ship:altitude > NALT {}
+//
+ //   doTestFlight().
+}
 
 main().
