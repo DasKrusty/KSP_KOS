@@ -1,9 +1,6 @@
-// This script is to test new craft to find out their capabilities with regards to ceiling, speed and range.
-// Version: 1.04
-// POA:
-// status check - check if aircraft is landed or currently flying
-// take off
-// run test per 1000m, capturing ceiling, speed and range
+// DusKrusty's Test Flight Aircraft Script
+// This script is to test new aircraft to find out their capabilities with regards to speed vs ceiling.
+// Version: 1.29
 
 function Main {
     doFlightStatus().
@@ -80,24 +77,31 @@ function doTakeOff {
     }
 }
 
-//function doTestFlight {
-//    set OSPE to airspeed.
-//
-//    if ship:altitude < NALT {
- //       lock steering to heading(NDIR,TWR * 1.5).
-//        when ship:altitude >= NALT then {
-//        lock steering to heading(NDIR,0).
-//        wait 30.
-//        print ("Alt: " + ship:altitude).
-//        print ("Spe: " + airspeed).
-//        set OALT to ship:altitude.
- //       set OSPE to airspeed.
-//        set NALT to OALT + 1000.
-//        }
-//    }
-//    if ship:altitude > NALT {}
-//
- //   doTestFlight().
+function doTestFlight {
+    set OSPE to airspeed.
+    lock steering to heading(NDIR,TWR * 1.5).
+    when ship:altitude >= NALT then {
+        lock steering to heading(NDIR,0).
+        wait 60.
+        print ("Alt: " + ship:altitude).
+        print ("Spe: " + airspeed).
+        set OALT to ship:altitude.
+        set NSPE to airspeed.
+            if OSPE > NSPE {
+                print "Aircraft has reached optimal speeds and ceiling".
+                wait 1.
+                print "Test Completed".
+                wait 1.
+                print ("Alt: " + ship:altitude).
+                print ("Spe: " + airspeed).
+            }
+            if NSPE > OSPE {
+                print "Preparing next test".
+                wait 1.
+                set NALT to OALT + 1000.
+                doTestFlight().
+            }   
+    }
 }
 
 main().
